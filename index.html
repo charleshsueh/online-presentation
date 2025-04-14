@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Integrative analysis of multi-omics data for identifying multi-markers for diagnosing pancreatic cancer</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Chun-Chien(Charles) Hsueh" />
+    <script src="libs/header-attrs-2.29/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/rutgers.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rutgers-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Integrative analysis of multi-omics data for identifying multi-markers for diagnosing pancreatic cancer
+]
+.subtitle[
+## ⚔ Online Presentation Assignment
+]
+.author[
+### Chun-Chien(Charles) Hsueh
+]
+.institute[
+### Rutgers University
+]
+.date[
+### 2025/04/12
+]
+
+---
+
+
+
+# Introduction
+
+The study investigates how integrating microRNA (miRNA) and messenger RNA (mRNA) expression data can help identify biomarkers for diagnosing pancreatic ductal adenocarcinoma (PDAC).Pancreatic cancer is a highly lethal disease with vague early symptoms and limited diagnostic methods, so identifying effective diagnostic markers is crucial for improving patient outcomes.
+
+This paper addresses an important biomedical problem—early diagnosis of pancreatic cancer—by employing an integrative multi-omics data approach. The study utilizes various statistical methods, including Support Vector Machines (SVM), Leave-One-Out Cross-Validation (LOOCV), and linear regression, to handle high-dimensional data and identify reliable biomarkers.
+
+---
+# Introduction
+## Domain knowledge(1)
+
+- **miRNA (microRNA)**: Small, non-coding RNA molecules (about 22 nucleotides long) that regulate gene expression by binding to messenger RNA (mRNA), typically leading to mRNA degradation or inhibition of translation. In cancer, miRNAs can act as oncogenes (promoting cancer) or tumor suppressors (inhibiting cancer).
+- **mRNA (messenger RNA)**: A type of RNA that carries genetic information from DNA to the ribosome, where it is translated into proteins. mRNA expression levels reflect how active a gene is, and in cancer studies, they are often used to identify dysregulated genes.
+- **PDAC (Pancreatic Ductal Adenocarcinoma)**: The most common type of pancreatic cancer, accounting for about 90% of cases. PDAC originates in the ducts of the pancreas and is known for its aggressive nature, late diagnosis, and poor prognosis (5-year survival rate &lt; 10%).
+---
+# Introduction
+## Domain knowledge(2)
+
+- **Multi-Markers**: A combination of multiple biological markers (e.g., miRNAs and genes) used together to improve the accuracy of disease diagnosis. In this study, multi-markers refer to pairs of miRNAs and their target genes that are diagnostic for PDAC.
+- **Multi-Omics Data**: Data integrating multiple layers of biological information, such as genomics, transcriptomics, and proteomics. In this paper, multi-omics data refers to the combined use of miRNA and mRNA expression profiles to study PDAC.
+
+---
+# Introduction
+## Statistical Methods(1)
+
+- **SVM (Support Vector Machine)**: A machine learning algorithm used for classification and regression tasks. SVM works by finding the hyperplane that best separates data points of different classes in a high-dimensional space. In this study, SVM is used to classify PDAC versus normal samples based on miRNA and mRNA expression, with the goal of identifying diagnostic markers.
+- **LOOCV (Leave-One-Out Cross-Validation)**: A validation technique where one sample is left out as the test set, and the remaining samples are used as the training set. This process is repeated for each sample in the dataset, ensuring that all samples are tested exactly once. LOOCV is particularly useful for small datasets, as it maximizes the training data while providing a robust estimate of model performance.
+- **GO Analysis (Gene Ontology Analysis)**: A bioinformatics approach to annotate genes and their products with biological functions, processes, and cellular components. In this study, GO analysis is used to identify the biological pathways (e.g., apoptosis, angiogenesis) associated with the identified markers, providing insights into their roles in PDAC.
+---
+# Introduction
+## Statistical Methods(2)
+
+- **Linear Regression**: A statistical method to model the relationship between a dependent variable and one or more independent variables by fitting a linear equation. In this paper, linear regression is used to estimate miRNA activity in datasets lacking miRNA expression, based on the expression of their target genes.
+- **Sample Class Weights**: A technique used to address imbalanced datasets, where one class (e.g., cancer samples) has significantly more samples than another (e.g., normal samples). By assigning higher weights to the underrepresented class, the model gives more importance to correctly classifying those samples, reducing bias.
+
+---
+# Summary
+
+## Main Points
+The paper investigates the potential of miRNA and mRNA expression profiles as diagnostic biomarkers for PDAC by integrating multi-omics data. Key points include:
+
+- **Data and Objective**: The study uses miRNA and mRNA expression data from 104 PDAC tissues and 17 benign pancreatic tissues to identify multi-markers for PDAC diagnosis.
+- **Methodology**: The authors apply SVM classification with LOOCV to evaluate the diagnostic performance of single and multi-markers, addressing the issue of imbalanced data with sample class weights. They also use linear regression to estimate miRNA activity in datasets lacking miRNA expression.
+---
+
+- **Findings**: The study identifies 705 multi-markers, including 27 miRNAs and 289 genes, with high diagnostic performance (balanced accuracy [BA] and area under the curve [AUC] &gt; 0.85 in many cases). Validation is performed using independent datasets from the Gene Expression Omnibus (GEO).
+- **Biological Insights**: The identified markers are annotated with cancer-related pathways (e.g., apoptosis, angiogenesis) using gene ontology (GO) analysis, and miRNA-target gene interactions are visualized in a network.
+
+---
+# Summary
+## Research Questions
+The authors aim to address the following questions:
+- How can miRNA and mRNA expression data be integrated to identify reliable diagnostic markers for PDAC?
+- What statistical methods can effectively handle the challenges of high-dimensional and imbalanced omics data in PDAC diagnosis?
+- How can miRNA activity be estimated in datasets lacking miRNA expression, and how does this impact marker validation?
+
+---
+# Methods
+## Analysis Scheme
+&lt;img src="../analysis scheme.png" width="70%" /&gt;
+---
+class: center, middle
+
+## Let's look at these methods in more detail~
+---
+# Methods
+### Step 1: Prediction of miRNA-Target Gene Interactions
+- **What They Do**: Construct miRNA-target gene relationships to understand regulatory activity.
+- **How They Do It**: Use three in silico prediction tools (TargetScan, PITA, and miRvestigator) and validated data from miRTarBase to identify 1,357,560 miRNA-target relationships. They filter for negatively correlated pairs (correlation coefficient &lt; -0.3, p-value &lt; 0.05) using linear regression, resulting in 33,422 reliable relationships.
+- **Why They Do It**: To ensure that only biologically relevant miRNA-target interactions are used for marker identification, reducing false positives from prediction tools.
+---
+# Methods
+### Step 1: Prediction of miRNA-Target Gene Interactions
+&lt;img src="../Estimaye scheme miRNA expression.png" width="80%" /&gt;
+---
+
+# Methods
+### Step 2: Identification of Multi-Marker Candidates
+- **What They Do**: Identify miRNA and mRNA markers with high diagnostic performance for PDAC.
+- **How They Do It**: Apply SVM classification with LOOCV to evaluate marker performance on 104 PDAC and 17 benign tissues. To address the imbalanced dataset (more cancer than benign samples), they use sample class weights (α_cancer = 1, α_normal = 6.117647). Performance is measured using BA, AUC, and permutation test p-values.
+- **Why They Do It**: SVM is effective for high-dimensional data classification, and LOOCV ensures robust evaluation by using all but one sample for training. Sample weights mitigate bias from the imbalanced dataset.
+---
+
+# Methods
+### Step 3: Validation in Independent Datasets
+- **What They Do**: Validate marker candidates using independent datasets.
+- **How They Do It**: For datasets lacking miRNA expression (e.g., PDAC2 and PDAC3 from GEO), they estimate miRNA activity using linear regression models fitted with miRNA and mRNA expression data from the primary dataset. Markers with BA &gt; 0.7 in at least one independent dataset are selected.
+- **Why They Do It**: To ensure the generalizability of the markers across different datasets and to address the challenge of missing miRNA data in some datasets.
+---
+
+# Methods
+### Step 4: Evaluation in Other Cancers
+- **What They Do**: Test the diagnostic performance of PDAC markers in other cancers (e.g., lymphoma, breast cancer).
+- **How They Do It**: Use SVM-LOOCV to evaluate marker performance in GEO datasets for other cancers.
+- **Why They Do It**: To explore the specificity of the markers for PDAC and their potential applicability to other cancers.
+---
+# Methods
+### Step 4: Evaluation in Other Cancers
+&lt;img src="../figure 4.png" width="70%" /&gt;
+---
+
+# Methods
+### Step 5: GO Analysis and Network Generation
+- **What They Do**: Annotate the biological functions of the identified markers and visualize miRNA-target interactions.
+- **How They Do It**: Use PANTHER for GO analysis (selecting pathways with Bonferroni-corrected p-values &lt; 0.05) and Cytoscape to generate a miRNA-mRNA network.
+- **Why They Do It**: To provide biological context for the markers, linking them to cancer-related processes like apoptosis and angiogenesis.
+---
+
+# Appropriateness/novelty of analysis
+## What's good:
+  - The use of SVM with LOOCV is appropriate for handling high-dimensional omics data and small sample sizes, as SVM can effectively separate classes in high-dimensional spaces, and LOOCV maximizes the use of limited data for validation.
+  - The GO analysis and network visualization provide valuable biological insights, enhancing the interpretability of the statistical findings.
+---
+
+# Appropriateness/novelty of analysis
+## However...
+  - Linear regression for estimating miRNA activity is a practical solution for datasets lacking miRNA expression, though it assumes a linear relationship, which may not always hold in biological systems. Compared to what I have previously read, this approach is robust, but alternatives like non-linear models (e.g., Random Forests) could potentially capture more complex relationships.
+---
+
+# Presentation of results
+## Overview of Results Presentation
+The authors present their findings using a combination of tables and figures, which provide a clear overview of the diagnostic performance of the identified markers and their biological relevance. 
+---
+## Table 1: Performance of Multi-Markers
+&lt;img src="../t1.png" width="120%" /&gt;
+---
+
+## Table 1: Performance of Multi-Markers
+- **Purpose**:This table provides a comprehensive summary of the diagnostic performance of selected miRNA-target gene pairs, which are the multi-markers identified in the study.  We can compare the diagnostic performance of different miRNA-target pairs, both in the primary dataset and in independent datasets. The inclusion of correlation coefficients and p-values adds rigor to the miRNA-target relationships, confirming their biological relevance.
+
+- **Key Findings**: Many miRNAs and their target genes achieve high diagnostic performance, with BA and AUC values often exceeding 0.85. The correlation coefficients are consistently negative, reflecting the expected regulatory relationship where miRNA upregulation leads to target gene downregulation.
+---
+
+## Table 2: Performances of Selected 27 miRNAs
+&lt;img src="../t2.png" width="120%" /&gt;
+---
+## Table 2: Performances of Selected 27 miRNAs
+- **Purpose**: This table provides a comprehensive overview of the diagnostic potential of the 27 miRNAs, trying compare their performance across different datasets. The inclusion of the number of target genes highlights the complexity of miRNA regulation in PDAC, as miRNAs with more targets may have a broader impact on gene expression.
+
+- **Key Findings**: The 27 miRNAs show strong diagnostic performance, with BA values ranging from 0.881 to 0.927 and AUC values often exceeding 0.9.  The performance in independent datasets varies, with some miRNAs maintaining high accuracy, while others show reduced performance. The number of target genes varies widely, from 1 to 136, reflecting the diverse regulatory roles of these miRNAs.
+---
+## Table 3: Coregulated Target Genes
+&lt;img src="../t3.png" width="150%" /&gt;
+---
+## Table 3: Coregulated Target Genes
+- **Purpose**: This table illustrates the complexity of miRNA regulation in PDAC, showing how multiple miRNAs can target the same gene to exert a coordinated effect. The GO annotations provide biological context, linking the genes to processes that are dysregulated in cancer.
+- **Key Findings**: The 17 target genes are regulated by 7 to 12 miRNAs each, indicating significant coregulation. Many of the GO terms are cancer-related, highlighting the biological relevance of these genes in PDAC. The miRNAs listed are consistent with those in Table 2, reinforcing their importance in the study.
+
+---
+# Coonclusion
+## What I liked
+
+I liked the integrative approach, combining miRNA and mRNA data to identify multi-markers, which provides a more comprehensive view of PDAC study. The visualization is also impressive, they used figures to easily explain their study and effectively present complex data.
+---
+# Coonclusion
+## What I disliked
+
+The linear regression method for estimating miRNA activity may oversimplify the complex regulatory dynamics of miRNAs. Exploring non-linear models could probably improve the accuracy.
+---
+class: center, middle
+
+# Thank you!!!
+## Looking forward to your comments!
+### You can find the paper below ~
+
+[Integrative analysis of multi-omics data for identifying multi-markers for diagnosing pancreatic cancer(DOI: 10.1186/s12864-015-1691-2)](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-16-S9-S4) 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
