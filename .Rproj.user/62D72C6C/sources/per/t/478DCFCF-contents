@@ -74,7 +74,8 @@ The authors aim to address the following questions:
 # Methods
 ## Analysis Scheme
 ```{r, echo=FALSE, out.width="70%"}
-knitr::include_graphics("C:/Users/Charles/OneDrive/桌面/analysis scheme.png")
+library(here)
+knitr::include_graphics(here("photo","analysis scheme.png"))
 ```
 ---
 class: center, middle
@@ -90,7 +91,7 @@ class: center, middle
 # Methods
 ### Step 1: Prediction of miRNA-Target Gene Interactions
 ```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("C:/Users/Charles/OneDrive/桌面/Estimaye scheme miRNA expression.png")
+knitr::include_graphics(here("photo","Estimaye scheme miRNA expression.png"))
 ```
 ---
 
@@ -117,7 +118,7 @@ knitr::include_graphics("C:/Users/Charles/OneDrive/桌面/Estimaye scheme miRNA 
 # Methods
 ### Step 4: Evaluation in Other Cancers
 ```{r, echo=FALSE, out.width="70%"}
-knitr::include_graphics("C:/Users/Charles/OneDrive/桌面/figure 4.png")
+knitr::include_graphics(here("photo","figure 4.png"))
 ```
 ---
 
@@ -145,7 +146,7 @@ The authors present their findings using a combination of tables and figures, wh
 ---
 ## Table 1: Performance of Multi-Markers
 ```{r, echo=FALSE, out.width="120%"}
-knitr::include_graphics("C:/Users/Charles/OneDrive/桌面/t1.png")
+knitr::include_graphics(here("photo","t1.png"))
 ```
 ---
 
@@ -157,7 +158,7 @@ knitr::include_graphics("C:/Users/Charles/OneDrive/桌面/t1.png")
 
 ## Table 2: Performances of Selected 27 miRNAs
 ```{r, echo=FALSE, out.width="120%"}
-knitr::include_graphics("C:/Users/Charles/OneDrive/桌面/t2.png")
+knitr::include_graphics(here("photo","t2.png"))
 ```
 ---
 ## Table 2: Performances of Selected 27 miRNAs
@@ -167,7 +168,7 @@ knitr::include_graphics("C:/Users/Charles/OneDrive/桌面/t2.png")
 ---
 ## Table 3: Coregulated Target Genes
 ```{r, echo=FALSE, out.width="150%"}
-knitr::include_graphics("C:/Users/Charles/OneDrive/桌面/t3.png")
+knitr::include_graphics(here("photo","t3.png"))
 ```
 ---
 ## Table 3: Coregulated Target Genes
